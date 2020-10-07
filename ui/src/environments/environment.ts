@@ -7,5 +7,5 @@ export const environment = {
   production: false,
 
   baseUrl: '**baseUrl**',
-  apiUrl: `http://35.198.52.153:3000`
+  apiUrl: `https://fuzzy-trader--api.herokuapp.com`
 };
