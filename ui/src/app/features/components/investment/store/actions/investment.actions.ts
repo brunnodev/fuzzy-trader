@@ -7,7 +7,9 @@ export enum InvestmentActionTypes {
 
   RequestToCreateInvestment = '[Assets Dialog Component] Request To Create Investment',
   InvestmentCreated = '[Investment API] Investment Created',
-  ErrorRequestToCreateInvestment = '[Investment API] Error Request To Create Investment'
+  ErrorRequestToCreateInvestment = '[Investment API] Error Request To Create Investment',
+
+  RequestInvestmentValueDialog = '[Investment List Component] Request Investment Value Dialog',
 }
 
 export class RequestInvestments implements Action {
@@ -44,6 +46,10 @@ export class ErrorRequestToCreateInvestment implements Action {
   constructor(public payload: { error: any }) { }
 }
 
+export class RequestInvestmentValueDialog implements Action {
+  readonly type = InvestmentActionTypes.RequestInvestmentValueDialog;
+}
+
 export type InvestmentActions =
   RequestInvestments
   | InvestmentesLoaded
@@ -51,3 +57,4 @@ export type InvestmentActions =
   | RequestToCreateInvestment
   | InvestmentCreated
   | ErrorRequestToCreateInvestment
+  | RequestInvestmentValueDialog

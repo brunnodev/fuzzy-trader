@@ -6,6 +6,7 @@ import { selectAssetList } from 'app/features/components/asset/store/selectors/a
 import { SweetAlertService } from 'app/shared/services/sweet-alert.service';
 import { of } from 'rxjs';
 import { catchError, filter, first, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import swal from 'sweetalert2';
 
 import { InvestmentService } from '../../services/investment.service';
 import {
@@ -16,7 +17,9 @@ import {
   InvestmentesLoaded,
   RequestInvestments,
   RequestToCreateInvestment,
+  RequestInvestmentValueDialog,
 } from '../actions/investment.actions';
+import { RequestAssetsDialog } from 'app/features/components/asset/store/actions/asset.actions';
 
 @Injectable()
 export class InvestmentEffects {
@@ -88,6 +91,29 @@ export class InvestmentEffects {
     map(action => action.payload.error),
     tap(error => this.sweetAlertService.errorSwal(error.message))
   )
+
+  @Effect({ dispatch: false })
+  requestAssetsDialog$ = this.actions$.pipe(
+    ofType<RequestInvestmentValueDialog>(InvestmentActionTypes.RequestInvestmentValueDialog),
+    tap(() => this.openInvestmentValueDialog()),
+  )
+
+  private openInvestmentValueDialog() {
+    swal.mixin({
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      showCancelButton: true,
+      progressSteps: ['1']
+    }).queue([
+      {
+        title: 'How much in usd do you want to invest?',
+        text: 'Please use number in this format 150.50'
+      }
+    ]).then((result: any) => {
+      const [valueToInvest] = result.value
+      this.assetStore.dispatch(new RequestAssetsDialog({ valueToInvest }))
+    })
+  }
 
   constructor(
     private actions$: Actions,
