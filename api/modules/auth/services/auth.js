@@ -39,3 +39,9 @@ exports.mapUserToken = user => {
     token
   }
 }
+
+exports.signup = signupParams => {
+  return User
+    .create(signupParams)
+    .then(this.mapUserToken)
+}
