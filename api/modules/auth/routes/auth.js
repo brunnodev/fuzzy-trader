@@ -10,4 +10,7 @@ const router = express.Router()
 //POST /auth/login
 router.post('/login', authCtrl.login)
 
+//POST /auth/signup
+router.post('/signup', authCtrl.signup)
+
 module.exports = router
