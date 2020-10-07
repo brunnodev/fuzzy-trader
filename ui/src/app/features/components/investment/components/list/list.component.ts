@@ -4,6 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { RequestInvestments, RequestInvestmentValueDialog } from '../../store/actions/investment.actions';
 import { InvestmentState } from '../../store/reducers/investment.reducer';
 import { selectInvestmentList } from '../../store/selectors/investment.selectors';
+import { AssetState } from 'app/features/components/asset/store/reducers/asset.reducer';
+import { RequestAssets } from 'app/features/components/asset/store/actions/asset.actions';
 
 @Component({
   selector: 'app-list',
@@ -18,6 +20,7 @@ export class ListComponent implements OnInit {
   )
 
   constructor(
+    private assetStore: Store<AssetState>,
     private investmentStore: Store<InvestmentState>
   ) { }
 
@@ -34,6 +37,12 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initLists()
+  }
+
+  initLists() {
+    const valueToInvest = undefined
+    this.assetStore.dispatch(new RequestAssets({ valueToInvest }))
     this.investmentStore.dispatch(new RequestInvestments())
   }
 

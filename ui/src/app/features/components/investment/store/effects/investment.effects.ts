@@ -102,21 +102,22 @@ export class InvestmentEffects {
     swal.mixin({
       input: 'text',
       confirmButtonText: 'Next &rarr;',
-      showCancelButton: true,
-      progressSteps: ['1']
+      showCancelButton: true
     }).queue([
       {
         title: 'How much in usd do you want to invest?',
         text: 'Please use number in this format 150.50'
       }
     ]).then((result: any) => {
-      isNaN(result)
+      const [ valueToInvest ] = result.value
+
+      !valueToInvest || isNaN(valueToInvest)
         ? alert('The informed value is not a number. Try again.')
-        : this.emitToLoadAssetsByValueInvestent(result.value)
+        : this.emitToLoadAssetsByValueInvestent(valueToInvest)
     })
   }
 
-  private emitToLoadAssetsByValueInvestent([valueToInvest]) {
+  private emitToLoadAssetsByValueInvestent(valueToInvest) {
     this.assetStore.dispatch(new RequestAssetsDialog({ valueToInvest }))
   }
 
