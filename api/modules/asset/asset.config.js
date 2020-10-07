@@ -17,7 +17,7 @@ const assetDataSourceList = [
     request: {
       url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?region=US&symbols=',
       headers: {
-        'X-RapidAPI-Key': 'b5db1028ddmsh61ae57f0ae42b2fp148c09jsnbc0148faa5f5'
+        'X-RapidAPI-Key': '2853322f46msha20f52b73c63784p106b75jsn231ebcbe539e'
       }
     },
     method: DataSourceMethodEnum.POST,
