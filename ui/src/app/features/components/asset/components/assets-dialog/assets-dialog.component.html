@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header card-header-warning">
+    <h4 class="card-title">You are investing: <strong>{{ valueToInvest }}</strong></h4>
+  </div>
+  <div class="card-content table-responsive table-full-width">
+    <table class="table">
+      <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asset of assets$ | async">
+          <td>{{ asset.id }}</td>
+          <td>{{ asset.name }}</td>
+          <td>{{ asset.type }}</td>
+          <td>{{ asset.value | currency }}</td>
+          <td>
+            <button mat-raised-button class="btn btn-default" (click)="addInverstment(asset)">Buy</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
