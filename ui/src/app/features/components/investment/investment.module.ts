@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { InvestmentTopCardsModule } from './components/investment-top-cards/investment-top-cards.module';
 import { ListComponent } from './components/list/list.component';
 import { InvestmentRoutingModule } from './investment-routing.module';
 import { InvestmentService } from './services/investment.service';
@@ -16,6 +17,7 @@ import * as fromInvestment from './store/reducers/investment.reducer';
   imports: [
     CommonModule,
     InvestmentRoutingModule,
+    InvestmentTopCardsModule,
 
     /* Store */
     StoreModule.forFeature('investment', fromInvestment.reducer),
