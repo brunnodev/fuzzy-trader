@@ -12,7 +12,10 @@ import { AuthEffects } from './store/effects/auth.effects';
 import * as fromAuth from './store/reducers/auth.reducer';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LoginComponent,
+    SignupComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
