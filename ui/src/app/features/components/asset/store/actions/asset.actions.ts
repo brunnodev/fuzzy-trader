@@ -10,12 +10,14 @@ export enum AssetActionTypes {
 
 export class RequestAssets implements Action {
   readonly type = AssetActionTypes.RequestAssets;
+
+  constructor(public payload: { valueToInvest: any }) { }
 }
 
 export class AssetsLoaded implements Action {
   readonly type = AssetActionTypes.AssetsLoaded;
 
-  constructor(public payload: { assets: any }) { }
+  constructor(public payload: { assetsConfig: any }) { }
 }
 
 export class ErrorRequestAssets implements Action {

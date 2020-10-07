@@ -13,3 +13,8 @@ export const selectAssetList = createSelector(
   selectAssetState,
   selectAll
 )
+
+export const selectSuggestedAssetList = createSelector(
+  selectAssetState,
+  state => state.suggestions
+)

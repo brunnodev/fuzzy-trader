@@ -2,13 +2,15 @@ import { AssetActions, AssetActionTypes } from "../actions/asset.actions"
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 export interface AssetState extends EntityState<any> {
-  loading: boolean
+  loading: boolean,
+  suggestions: []
 }
 
 export const adapter: EntityAdapter<any> = createEntityAdapter<any>()
 
 export const initialState: AssetState = adapter.getInitialState({
-  loading: false
+  loading: false,
+  suggestions: []
 })
 
 export function reducer(state = initialState, action: AssetActions): AssetState {
@@ -17,7 +19,11 @@ export function reducer(state = initialState, action: AssetActions): AssetState 
       return { ...state, loading: true }
 
     case AssetActionTypes.AssetsLoaded:
-      return adapter.addAll(action.payload.assets, { ...state, loading: false })
+      return adapter.addAll(action.payload.assetsConfig.assets, {
+        ...state,
+        suggestions: action.payload.assetsConfig.suggestions,
+        loading: false
+      })
 
     case AssetActionTypes.ErrorRequestAssets:
       return { ...state, loading: false }

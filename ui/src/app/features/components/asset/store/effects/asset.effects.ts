@@ -19,28 +19,30 @@ import {
 export class AssetEffects {
 
   @Effect()
-  requestSignup$ = this.actions$.pipe(
+  requestAssets$ = this.actions$.pipe(
     ofType<RequestAssets>(AssetActionTypes.RequestAssets),
-    switchMap(() =>
-      this.assetService.load()
+    map(action => action.payload.valueToInvest),
+    switchMap(valueToInvest =>
+      this.assetService.load(valueToInvest)
         .pipe(
-          map(assets => new AssetsLoaded({ assets })),
+          map(assetsConfig => new AssetsLoaded({ assetsConfig })),
           catchError(error => of(new ErrorRequestAssets({ error })))
         )
     ))
 
   @Effect({ dispatch: false })
-  errorRequestSignup$ = this.actions$.pipe(
+  errorRequestAssets$ = this.actions$.pipe(
     ofType<ErrorRequestAssets>(AssetActionTypes.ErrorRequestAssets),
     map(action => action.payload.error),
     tap(error => this.sweetAlertService.errorSwal(error.message))
   )
 
-  @Effect({ dispatch: false })
+  @Effect()
   requestAssetsDialog$ = this.actions$.pipe(
     ofType<RequestAssetsDialog>(AssetActionTypes.RequestAssetsDialog),
     map(action => action.payload.valueToInvest),
-    tap(valueToInvest => this.dialogService.open(AssetsDialogComponent, {data: valueToInvest, width: '60%', height: '90%' }))
+    tap(valueToInvest => this.dialogService.open(AssetsDialogComponent, {data: valueToInvest, width: '60%', height: '90%' })),
+    map(valueToInvest => new RequestAssets({ valueToInvest }))
   )
 
   constructor(

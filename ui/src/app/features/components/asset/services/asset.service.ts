@@ -7,7 +7,7 @@ export class AssetService {
 
   constructor(private http: HttpClient) { }
 
-  load() {
-    return this.http.get(`${environment.baseUrl}/asset`)
+  load(valueToInvest) {
+    return this.http.get(`${environment.baseUrl}/asset?valueToInvest=${valueToInvest}`)
   }
 }
