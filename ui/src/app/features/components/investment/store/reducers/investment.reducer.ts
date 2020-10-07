@@ -51,8 +51,12 @@ export function reducer(state = initialState, action: InvestmentActions): Invest
       return adapter.addOne(investment, {
         ...state,
         totals: {
-          invested: (state.totals.invested + investment.purchaseValue),
-          updated: (state.totals.updated + investment.purchaseValue)
+          invested: (
+            state.totals.invested + (investment.amount * investment.purchaseValue)
+          ),
+          updated: (
+            state.totals.updated + (investment.amount * investment.purchaseValue)
+          )
         },
         loading: false
       })

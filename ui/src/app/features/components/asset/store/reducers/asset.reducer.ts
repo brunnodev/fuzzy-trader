@@ -16,7 +16,7 @@ export const initialState: AssetState = adapter.getInitialState({
 export function reducer(state = initialState, action: AssetActions): AssetState {
   switch (action.type) {
     case AssetActionTypes.RequestAssets:
-      return adapter.removeAll({ ...state, loading: true })
+      return adapter.removeAll({ ...state, suggestions: [], loading: true })
 
     case AssetActionTypes.AssetsLoaded:
       return adapter.addAll(action.payload.assetsConfig.assets, {
