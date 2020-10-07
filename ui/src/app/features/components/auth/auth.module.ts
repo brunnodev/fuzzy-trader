@@ -5,6 +5,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { AuthRoutingModule } from './auth-routing.module';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { AuthService } from './services/auth.service';
 import { AuthEffects } from './store/effects/auth.effects';
 import * as fromAuth from './store/reducers/auth.reducer';
@@ -22,6 +24,7 @@ import * as fromAuth from './store/reducers/auth.reducer';
     EffectsModule.forFeature([ AuthEffects ])
   ],
   providers: [
+    AuthService
   ]
 })
 export class AuthModule { }
