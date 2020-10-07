@@ -110,9 +110,14 @@ export class InvestmentEffects {
         text: 'Please use number in this format 150.50'
       }
     ]).then((result: any) => {
-      const [valueToInvest] = result.value
-      this.assetStore.dispatch(new RequestAssetsDialog({ valueToInvest }))
+      isNaN(result)
+        ? alert('The informed value is not a number. Try again.')
+        : this.emitToLoadAssetsByValueInvestent(result.value)
     })
+  }
+
+  private emitToLoadAssetsByValueInvestent([valueToInvest]) {
+    this.assetStore.dispatch(new RequestAssetsDialog({ valueToInvest }))
   }
 
   constructor(
