@@ -39,18 +39,15 @@ const assetDataSourceList = [
   }
 ]
 
+/* move it to the database */
 const suggestionsConfig = [
   {
     condition: value => (value < 100),
     apply: assets => assets.filter(asset => asset.type === 'Crypto')
   },
   {
-    condition: value => (value < 100),
-    apply: assets => assets.filter(asset => asset.value < 100)
-  },
-  {
-    condition: value => (value < 100),
-    apply: assets => assets.filter(asset => ['XRP'].includes(asset.id))
+    condition: value => (value > 100000),
+    apply: assets => assets.filter(asset => ['FB', 'TSLA'].includes(asset.id))
   }
 ]
 
