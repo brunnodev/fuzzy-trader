@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthState } from '../../store/reducers/auth.reducer';
 import { Store } from '@ngrx/store';
+
 import { RequestSignup } from '../../store/actions/auth.actions';
+import { AuthState } from '../../store/reducers/auth.reducer';
 
 @Component({
   selector: 'app-signup',

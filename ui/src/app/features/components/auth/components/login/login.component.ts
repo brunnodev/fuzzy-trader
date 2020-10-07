@@ -3,8 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { AuthState } from '../../store/reducers/auth.reducer';
 import { RequestLogin } from '../../store/actions/auth.actions';
+import { AuthState } from '../../store/reducers/auth.reducer';
 
 @Component({
   selector: 'app-login',
