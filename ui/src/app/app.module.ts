@@ -14,6 +14,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
+import { CoreModule } from './core/core.module';
+import { FeaturesModule } from './features/features.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { metaReducers, reducers } from './reducers';
 import { clearState } from './reducers/clear';
@@ -35,7 +37,10 @@ import { clearState } from './reducers/clear';
     EffectsModule.forRoot([]),
     StoreModule.forRoot(reducers, { metaReducers: [ clearState ] }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+
+    CoreModule,
+    FeaturesModule
   ],
   declarations: [
     AppComponent,

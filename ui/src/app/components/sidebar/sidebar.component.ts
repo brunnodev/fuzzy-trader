@@ -8,7 +8,8 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-]
+    { path: '/investments', title: 'Wallet',  icon:'account_balance_wallet', class: '' }
+];
 
 @Component({
   selector: 'app-sidebar',

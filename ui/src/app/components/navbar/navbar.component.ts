@@ -10,4 +10,12 @@ import { AuthState } from 'app/features/components/auth/store/reducers/auth.redu
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
+
+  constructor(
+    private authStore: Store<AuthState>
+  ) { }
+
+  logout() {
+    this.authStore.dispatch(new RequestLogout())
+  }
 }
