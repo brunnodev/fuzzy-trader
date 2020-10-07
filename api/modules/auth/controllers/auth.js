@@ -15,3 +15,15 @@ const handleLoginError = (res, errorMessage) => {
   console.log(errorMessage)
   errorJsonResponse(res, errorMessage)
 }
+
+exports.signup = (req, res) => {
+  let signupParams = req.body
+
+  authService.signup(signupParams)
+    .then(token => successJsonResponse(res, token))
+    .catch(error => handleSignupError(res, error))
+}
+
+const handleSignupError = (res, errorMessage) => {
+  errorJsonResponse(res, errorMessage)
+}
