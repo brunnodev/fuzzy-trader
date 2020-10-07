@@ -1,4 +1,4 @@
 module.exports = {
-  secretKey: 'THIS_IS_FUZZYTRADER_SECRET_KEY',
+  secretKey: process.env.JWT_SECRETE_KEY,
   tokenTime: '24h'
 }
