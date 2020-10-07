@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { AssetModule } from './components/asset/asset.module';
 import { AuthModule } from './components/auth/auth.module';
 import { FeaturesRoutingModule } from './features-routing.module';
 
@@ -9,7 +10,8 @@ import { FeaturesRoutingModule } from './features-routing.module';
   imports: [
     CommonModule,
     FeaturesRoutingModule,
-    AuthModule
+    AuthModule,
+    AssetModule
   ]
 })
 export class FeaturesModule { }
