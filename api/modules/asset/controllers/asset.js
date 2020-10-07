@@ -4,7 +4,9 @@ const { successJsonResponse, errorJsonResponse } =
   require('../../../helpers/response-helper')
 
 exports.loadAssets = (req, res) => {
-  assetDataSourceService.loadAssets()
+  const valueToInvest = req.query.valueToInvest
+
+  assetDataSourceService.loadAssets(valueToInvest)
     .then(assets => successJsonResponse(res, assets))
     .catch(error => handleLoadAssets(res, error))
 }

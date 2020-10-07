@@ -1,8 +1,8 @@
 const request = require('request')
 
-const { assetDataSourceList } = require('../asset.config')
+const { assetDataSourceList, suggestionsConfig } = require('../asset.config')
 
-exports.loadAssets = () => {
+exports.loadAssets = investedValue => {
   const requests = assetDataSourceList.map(assetDataSourceConfig =>
     this.mapAssetRequest(assetDataSourceConfig)
       .then(assetDataSourceConfig.normalize)
@@ -10,6 +10,7 @@ exports.loadAssets = () => {
 
   return Promise.all(requests)
     .then(normalizedRequestList => normalizedRequestList.flat())
+    .then(assets => this.mapSuggestions(investedValue, assets))
 }
 
 exports.mapAssetRequest = assetDataSourceConfig => {
@@ -29,4 +30,26 @@ exports.mapAssetRequest = assetDataSourceConfig => {
 const mapUrlWithAssets = assetDataSourceConfig => {
   return assetDataSourceConfig.request.url +
     assetDataSourceConfig.assetIds.join(assetDataSourceConfig.assetIdsDivider)
+}
+
+//Improvement needed :(
+exports.mapSuggestions = (investedValue, assets) => {
+  let suggestions = [ ...assets ]
+
+  const suggestionsToApply = mapSuggestionByInvestedValue(investedValue)
+
+  suggestionsToApply.forEach(toApply => {
+    suggestions = [ ...toApply.apply(suggestions)  ]
+  })
+
+  return {
+    assets,
+    suggestions
+  }
+}
+
+const mapSuggestionByInvestedValue = (investedValue) => {
+  return suggestionsConfig.filter(suggestionConfig =>
+    suggestionConfig.condition(investedValue)
+  )
 }

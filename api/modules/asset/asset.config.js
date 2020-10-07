@@ -39,7 +39,23 @@ const assetDataSourceList = [
   }
 ]
 
+const suggestionsConfig = [
+  {
+    condition: value => (value < 100),
+    apply: assets => assets.filter(asset => asset.type === 'Crypto')
+  },
+  {
+    condition: value => (value < 100),
+    apply: assets => assets.filter(asset => asset.value < 100)
+  },
+  {
+    condition: value => (value < 100),
+    apply: assets => assets.filter(asset => ['XRP'].includes(asset.id))
+  }
+]
+
 module.exports = {
   assetDataSourceList,
-  DataSourceTypeEnum
+  DataSourceTypeEnum,
+  suggestionsConfig
 }
