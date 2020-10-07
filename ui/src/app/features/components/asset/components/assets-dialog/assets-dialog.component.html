@@ -12,7 +12,7 @@
         <th>Actions</th>
       </thead>
       <tbody>
-        <tr *ngFor="let asset of assets$ | async">
+        <tr *ngFor="let asset of suggestedAssets$ | async">
           <td>{{ asset.id }}</td>
           <td>{{ asset.name }}</td>
           <td>{{ asset.type }}</td>
